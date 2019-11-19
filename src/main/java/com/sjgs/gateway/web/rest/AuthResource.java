@@ -83,31 +83,6 @@ public class AuthResource {
         return ResponseEntity.noContent().build();
     }
 
-
-    /**
-     * mobile Authenticates a user setting the access and refresh token cookies.
-     *
-     * @param request  the ServerHttpRequest holding - among others - the headers passed from the client.
-     * @param response the ServerHttpResponse getting the cookies set upon successful authentication.
-     * @param params   the login params (username, password, rememberMe).
-     * @return the access token of the authenticated user. Will return an error code if it fails to authenticate the user.
-     * @author qxx
-     */
-    @RequestMapping(value = "/mobile/token", method = RequestMethod.POST, consumes = MediaType
-            .APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<OAuth2AccessToken> authenticateByMobile(ServerHttpRequest request, ServerHttpResponse response, @RequestBody
-            Map<String, String> params) throws Exception {
-        log.info("loggingg mobileLogin");
-        return authenticationService.authenticateByMobile(request, response, params);
-    }
-
-    @RequestMapping(value = "/mobile/captcha", method = RequestMethod.GET)
-    public Flux<Void> getMobelCaptcha(@RequestParam(value = "phone") String phone) {
-        log.info("loggingg getMobelCaptcha {}", phone);
-        return authenticationService.getMobelCaptcha(phone);
-    }
-
-
     /**
      * 处理restTemaplate调用其他接口时返回的4xx消息;
      * 全局的ControllerAdvice调试时有用, 打包的时候失效; 所以改用这个方法;

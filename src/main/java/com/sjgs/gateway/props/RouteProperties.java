@@ -18,6 +18,7 @@ package com.sjgs.gateway.props;
 
 import lombok.Data;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ import java.util.List;
  */
 @Data
 @RefreshScope
+@Configuration
 public class RouteProperties {
 
 	private final List<RouteResource> resources = new ArrayList<>();
